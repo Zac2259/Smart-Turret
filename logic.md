@@ -8,4 +8,7 @@ remainoff(Remain off)
 loop(Wait 1 second)
 
 terminalStart --> Buttontrigger
+Buttontrigger --> activateturret
+Buttontrigger --> remainoff
+remainoff --> loop
  ```
