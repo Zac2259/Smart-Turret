@@ -1,10 +1,11 @@
  ```mermaid
  flowchart TD
-terminalStart([Start])
+terminalStart([Button])
  terminalEnd([End])
-hasbuttonbeentriggered{Has button been pressed?}
+Buttontrigger{Has button been pressed?}
 activateturret(Activate Turret and sensor)
 remainoff(Remain off)
 loop(Wait 1 second)
- ```
 
+terminalStart --> Buttontrigger
+ ```
