@@ -9,7 +9,7 @@ activatesensor(Activate sensor)
 remainoff(Remain off)
 loop(Wait 1 second)
 %%Tracking logic
-Readline(digitalRead(lineSensor))
+Readline(digitalRead lineSensor)
 
 terminalStart --> Buttontrigger
 Buttontrigger --> activateturret
