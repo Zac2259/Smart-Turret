@@ -10,7 +10,13 @@ remainoff(Remain off)
 loop(Wait 1 second)
 %%Tracking logic
 Readline(digitalRead lineSensor)
-
+activatepir(Activate PIR)
+activatedistance(Activate Distance Sensor)
+loop2(Wait one second)
+distance(DistanceThreshold = 30)
+ReadPIR(digitalRead PIR)
+track(Track target)
+loop3(wait one minute)
 terminalStart --> Buttontrigger
 Buttontrigger --> activateturret
 activateturret --> activatesensor
