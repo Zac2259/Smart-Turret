@@ -14,21 +14,28 @@ Tracking(Tracking Logic)
 Readline{digitalRead lineSensor}
 activatepir(Activate PIR)
 activatedistance(Activate Distance Sensor)
+activateLED(Activate LED)
 loop2(Wait 1 second)
 distance(DistanceThreshold = 30)
 ReadPIR{digitalRead PIR}
 track(Track target)
 loop3(wait 1 minute)
 %%Firing
+firelogic(Firing Logic)
+readdistance{readDistance}
+fire(Led turns red)
+Keeptrack(Track target)
+loop4(wait one second)
+activatealarm(ActivateBuzzer)
 terminalStart --> Button
 Button --> Buttontrigger
 Buttontrigger --> activateturret
 activateturret --> activatesensor
-Buttontrigger --> remainoff
-remainoff --> loop
+Buttontrigger --> loop
 loop -->Buttontrigger
 Tracking --> Readline
 Readline --> activatepir
+activatepir --> activateLED
 Readline --> loop2
 loop2 --> Readline
 activatepir --> activatedistance
@@ -37,4 +44,10 @@ distance --> ReadPIR
 ReadPIR --> track
 ReadPIR --> loop3
 loop3 --> Readline
+firelogic --> readdistance
+readdistance --> fire
+fire --> activatealarm
+readdistance --> Keeptrack
+Keep track --> loop 4 
+loop4 --> readdistance
  ```
