@@ -1,8 +1,9 @@
  ```mermaid
  flowchart TD
  %%standby logic
-terminalStart([Button])
+terminalStart([Standby Logic])
  terminalEnd([End])
+ Button(Button)
 Buttontrigger{digitalRead Button}
 activateturret(Activate Turret)
 activatesensor(Activate line sensor)
@@ -18,15 +19,14 @@ ReadPIR{digitalRead PIR}
 track(Track target)
 loop3(wait 1 minute)
 %%Firing
-terminalStart --> Buttontrigger
+terminalStart --> Button
+Button --> Buttontrigger
 Buttontrigger --> activateturret
 activateturret --> activatesensor
 Buttontrigger --> remainoff
 remainoff --> loop
-activatesensor --> Readline
 Readline --> activatepir
 Readline --> loop2
-activatepir --> activatedistance
 activateddistance --> distance
 distance --> ReadPIR
 ReadPIR --> track
