@@ -21,6 +21,7 @@ terminalStart --> Buttontrigger
 Buttontrigger --> activateturret
 activateturret --> activatesensor
 Buttontrigger --> remainoff
+remainoff --> loop
 activatesensor --> Readline
 Readline --> activatepir
 Readline --> loop2
