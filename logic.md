@@ -5,7 +5,7 @@ terminalStart([Button])
  terminalEnd([End])
 Buttontrigger{Has button been pressed?}
 activateturret(Activate Turret)
-activatesensor(Activate sensor)
+activatesensor(Activate line sensor)
 remainoff(Remain off)
 loop(Wait 1 second)
 %%Tracking logic
@@ -21,9 +21,9 @@ terminalStart --> Buttontrigger
 Buttontrigger --> activateturret
 activateturret --> activatesensor
 Buttontrigger --> remainoff
-remainoff --> loop
+activatesensor --> Readline
 Readline --> activatepir
 Readline --> loop2
-activatpir --> activatedistance
+activatepir --> activatedistance
 
  ```
