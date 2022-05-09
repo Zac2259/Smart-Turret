@@ -11,7 +11,7 @@ remainoff(Remain off)
 loop(Wait 1 second)
 %%Tracking logic
 Tracking(Tracking Logic)
-Readline(digitalRead lineSensor)
+Readline{digitalRead lineSensor}
 activatepir(Activate PIR)
 activatedistance(Activate Distance Sensor)
 loop2(Wait 1 second)
@@ -34,4 +34,5 @@ activatedistance --> distance
 distance --> ReadPIR
 ReadPIR --> track
 ReadPIR --> loop3
+loop3 --> ReadPIR
  ```
