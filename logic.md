@@ -10,6 +10,7 @@ activatesensor(Activate line sensor)
 remainoff(Remain off)
 loop(Wait 1 second)
 %%Tracking logic
+Tracking(Tracking Logic)
 Readline(digitalRead lineSensor)
 activatepir(Activate PIR)
 activatedistance(Activate Distance Sensor)
@@ -25,5 +26,12 @@ Buttontrigger --> activateturret
 activateturret --> activatesensor
 Buttontrigger --> remainoff
 remainoff --> loop
-
+Tracking --> Readline
+Readline --> activatepir
+Readline --> loop2
+activatepir --> activatedistance
+activatedistance --> distance
+distance --> ReadPIR
+ReadPIR --> track
+ReadPIR --> loop3
  ```
