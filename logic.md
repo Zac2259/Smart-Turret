@@ -26,13 +26,15 @@ Buttontrigger --> activateturret
 activateturret --> activatesensor
 Buttontrigger --> remainoff
 remainoff --> loop
+loop -->Buttontrigger
 Tracking --> Readline
 Readline --> activatepir
 Readline --> loop2
+loop2 --> Readline
 activatepir --> activatedistance
 activatedistance --> distance
 distance --> ReadPIR
 ReadPIR --> track
 ReadPIR --> loop3
-loop3 --> ReadPIR
+loop3 --> Readline
  ```
