@@ -22,5 +22,8 @@ Buttontrigger --> activateturret
 activateturret --> activatesensor
 Buttontrigger --> remainoff
 remainoff --> loop
+Readline --> activatepir
+Readline --> loop2
+activatpir --> activatedistance
 
  ```
