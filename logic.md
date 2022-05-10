@@ -27,7 +27,7 @@ Keeptrack(Track target)
 loop4(wait one second)
 terminalStart --> Button
 Button --> Buttontrigger
-Buttontrigger --> activateturret
+Buttontrigger --> |True| activateturret
 activateturret --> activatesensor
 Buttontrigger --> loop
 loop -->Buttontrigger
