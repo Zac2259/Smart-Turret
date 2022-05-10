@@ -44,10 +44,5 @@ distance --> ReadPIR
 ReadPIR --> track
 ReadPIR --> loop3
 loop3 --> Readline
-firelogic --> readdistance
-readdistance --> fire
-fire --> activatealarm
-readdistance --> Keeptrack
-Keep track --> loop 4 
-loop4 --> readdistance
+
  ```
