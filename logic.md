@@ -24,28 +24,28 @@ firelogic(Firing Logic)
 readdistance{readDistance}
 fire(Led turns red)
 Keeptrack(Track target)
-loop4(wait one second)
+loop4(wait 1 second)
 terminalStart --> Button
 Button --> Buttontrigger
 Buttontrigger --> |True| activateturret
-activateturret --> activatesensor
+activateturret --> |False| activatesensor
 Buttontrigger --> loop
 loop -->Buttontrigger
 Tracking --> Readline
-Readline --> activatepir
+Readline --> |True| activatepir
 activatepir --> activateLED
-Readline --> loop2
+Readline --> |False| loop2
 loop2 --> Readline
 activateLED --> activatedistance
 activatedistance --> distance
 distance --> ReadPIR
-ReadPIR --> track
-ReadPIR --> loop3
+ReadPIR --> |True| track
+ReadPIR --> |False| loop3
 loop3 --> Readline
 firelogic --> readdistance
-readdistance --> fire
+readdistance --> |True| fire
 fire --> terminalEnd
-readdistance --> Keeptrack
+readdistance --> |False| Keeptrack
 Keeptrack --> loop4 
 loop4 --> readdistance
 
