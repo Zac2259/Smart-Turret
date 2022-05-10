@@ -28,8 +28,8 @@ loop4(wait 1 second)
 terminalStart --> Button
 Button --> Buttontrigger
 Buttontrigger --> |True| activateturret
-activateturret --> |False| activatesensor
-Buttontrigger --> loop
+activateturret --> activatesensor
+Buttontrigger --> |False| loop
 loop -->Buttontrigger
 Tracking --> Readline
 Readline --> |True| activatepir
