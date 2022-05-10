@@ -42,5 +42,10 @@ distance --> ReadPIR
 ReadPIR --> track
 ReadPIR --> loop3
 loop3 --> Readline
-
+firelogic --> readdistance
+readdistance --> fire
+fire --> terminalEnd
+readdistance --> Keeptrack
+Keeptrack --> loop4 
+loop4 --> readdistance
  ```
