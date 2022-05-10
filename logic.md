@@ -36,7 +36,7 @@ Readline --> activatepir
 activatepir --> activateLED
 Readline --> loop2
 loop2 --> Readline
-activatepir --> activatedistance
+activateLED --> activatedistance
 activatedistance --> distance
 distance --> ReadPIR
 ReadPIR --> track
