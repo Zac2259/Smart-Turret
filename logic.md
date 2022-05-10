@@ -1,3 +1,5 @@
+ Behaviour 1/standby: When the button on the remote is pressed the turret shall be activated the turret and the line sensor shall be activated. At this point you shall also be able to adjust the angle of the turret using a pontonmeiter. This is also located on the remote 
+
  ```mermaid
  flowchart TD
  %%standby logic
