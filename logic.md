@@ -2,12 +2,11 @@
  flowchart TD
  %%standby logic
 terminalStart([Standby Logic])
- terminalEnd([End])
+ terminalEnd([Activate Buzzer])
  Button(Button)
 Buttontrigger{digitalRead Button}
 activateturret(Activate Turret)
 activatesensor(Activate line sensor)
-remainoff(Remain off)
 loop(Wait 1 second)
 %%Tracking logic
 Tracking(Tracking Logic)
@@ -26,7 +25,6 @@ readdistance{readDistance}
 fire(Led turns red)
 Keeptrack(Track target)
 loop4(wait one second)
-activatealarm(ActivateBuzzer)
 terminalStart --> Button
 Button --> Buttontrigger
 Buttontrigger --> activateturret
