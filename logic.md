@@ -11,7 +11,7 @@ activateturret(Activate Turret)
 activatesensor(Activate line sensor)
 loop(Wait 1 second)
 terminalStart1 --> Button
-terminalStart1 --> Buttontrigger
+Button --> Buttontrigger
 Buttontrigger --> |True| activateturret
 activateturret --> activatesensor
 Buttontrigger --> |False| loop
