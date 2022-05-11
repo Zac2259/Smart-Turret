@@ -1,4 +1,4 @@
- Behaviour 1/Standby Logic: When the button on the remote is pressed the turret shall be activated the turret and the line sensor shall be activated. At this point you shall also be able to adjust the angle of the turret using a pontonmeiter. This is also located on the remote 
+ Behaviour 1/Standby Logic: When the button on the remote is pressed the turret shall be activated the turret and the line sensor shall be activated. At this point you shall also be able to adjust the angle of the turret using a pontonmeiter. This is also located on the remote. 
 
  ```mermaid
  flowchart TD
@@ -8,12 +8,11 @@ terminalStart1([Standby Logic])
  Button(Button)
 Buttontrigger{digitalRead Button}
 activateturret(Activate Turret)
-activatesensor(Activate line sensor)
 loop(Wait 1 second)
 terminalStart1 --> Button
 Button --> Buttontrigger
 Buttontrigger --> |True| activateturret
-activateturret --> activatesensor
+activateturret --> terminalEnd1
 Buttontrigger --> |False| loop
 loop -->Buttontrigger
 ```
@@ -21,7 +20,8 @@ Behaviour 2/Tracking Logic: If the line sensor has been triggered the PIR sensor
 ```mermaid
 flowchart TD
 %%Tracking logic
-Tracking(Tracking Logic)
+terminalStart2([Tracking Logic])
+terminalEnd2([Track Target])
 Readline{digitalRead lineSensor}
 activatepir(Activate PIR)
 activatedistance(Activate Distance Sensor)
@@ -29,9 +29,8 @@ activateLED(Activate LED)
 loop2(Wait 1 second)
 distance(DistanceThreshold = 30)
 ReadPIR{digitalRead PIR}
-track(Track target)
 loop3(wait 1 minute)
-Tracking --> Readline
+terminalStart2 --> Readline
 Readline --> |True| activatepir
 activatepir --> activateLED
 Readline --> |False| loop2
@@ -39,7 +38,7 @@ loop2 --> Readline
 activateLED --> activatedistance
 activatedistance --> distance
 distance --> ReadPIR
-ReadPIR --> |True| track
+ReadPIR --> |True| terminalEnd2
 ReadPIR --> |False| loop3
 loop3 --> Readline
 ```
@@ -47,14 +46,15 @@ Behavior 3/Firing: If the target has reached the distance threshold then the led
 ```mermaid
 flowchart TD
 %%Firing logic
-firelogic(Firing Logic)
+terminalStart3([Firing Logic])
+terminalEnd3([Activate buzzer])
 readdistance{readDistance}
 fire(Led turns red)
 Keeptrack(Track target)
 loop4(wait 1 second)
-firelogic --> readdistance
+terminalStart3 --> readdistance
 readdistance --> |True| fire
-fire --> terminalEnd
+fire --> terminalEnd3
 readdistance --> |False| Keeptrack
 Keeptrack --> loop4 
 loop4 --> readdistance
