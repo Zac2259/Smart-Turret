@@ -49,7 +49,7 @@ flowchart TD
 terminalStart3([Firing Logic])
 terminalEnd3([Activate buzzer])
 readdistance{readDistance}
-fire(Led turns red)
+fire/Led turns red/
 Keeptrack(Track target)
 loop4(wait 1 second)
 terminalStart3 --> readdistance
