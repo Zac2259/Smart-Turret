@@ -10,7 +10,7 @@ Buttontrigger{digitalRead Button}
 activateturret(Activate Turret)
 activatesensor(Activate line sensor)
 loop(Wait 1 second)
-terminalStart --> Button
+terminalStart1 --> Button
 terminalStart1 --> Buttontrigger
 Buttontrigger --> |True| activateturret
 activateturret --> activatesensor
