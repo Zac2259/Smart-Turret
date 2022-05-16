@@ -3,6 +3,8 @@
  ```mermaid
  flowchart TD
  %%standby logic
+ activateserv(Actviate servo motor)
+ReadPo{analogRead Poteniometer}
 terminalStart1([Standby Logic])
  terminalEnd1([Activate line sensor])
  Button(Button)
@@ -15,6 +17,8 @@ Buttontrigger --> |True| activateturret
 activateturret --> terminalEnd1
 Buttontrigger --> |False| loop
 loop -->Buttontrigger
+terminalEnd1 --> activateserv
+activateserv --> ReadPo
 ```
 Behaviour 2/Tracking Logic: If the line sensor has been triggered the PIR sensor, distance sensor and LED shall be activated. Also once the sensor has been triggered the turret shall begin to start to search for moving targets using the PIR sensor. If the PIR sensor detects a moving target then the turret shall phyisclly track the target. If not then it shall continue to search for the target for a further minute. If no targets are detected by then the turret shall stop searching for targets and return to the beginning of the tracking logic. 
 ```mermaid
