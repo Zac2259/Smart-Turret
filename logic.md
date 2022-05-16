@@ -26,6 +26,7 @@ Readline{digitalRead lineSensor}
 activatepir(Activate PIR)
 activatedistance(Activate Distance Sensor)
 activateLED(Activate LED)
+activateDC(Activate DC motor)
 loop2(Wait 1 second)
 distance(DistanceThreshold = 30)
 ReadPIR{digitalRead PIR}
@@ -35,7 +36,8 @@ Readline --> |True| activatepir
 activatepir --> activateLED
 Readline --> |False| loop2
 loop2 --> Readline
-activateLED --> activatedistance
+activateLED --> activateDC
+activateDC --> activatedistance
 activatedistance --> distance
 distance --> ReadPIR
 ReadPIR --> |True| terminalEnd2
