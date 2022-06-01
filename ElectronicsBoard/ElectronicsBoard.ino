@@ -46,10 +46,7 @@ Servo myservo;
 void setup() {
   // put your setup code here, to run once:
 
-// put your setup code here, to run once:
-  Serial.begin(9600);           // Open serial communications and wait for port to open:
-  while (!Serial) {
-    delay(1);                   // wait for serial port to connect. Needed for native USB port only
+
 
   // Traffic Lights - LED Outputs
 pinMode(ledRed, OUTPUT);
@@ -143,5 +140,31 @@ void logEvent(String dataToLog) {
 
 void loop() {
   // put your main code here, to run repeatedly:
+turretRemote(); // Button and potiometer
+trackingSensor(); // Line Sensor and PIR
+turretWeapons(): // Distance Sensor and Traffic LED
+}
+
+/*
+ * button activates turret and line sensor the potienometer adjusts the vertical angle of the turret
+ */
+
+void turretRemote(){
+
+}
+
+/*
+ * when the line sensor is triggered it will activate the PIR which will track any moving targets the turret will then phsyiclly move to track said target vai the DC Motor
+ */
+
+void trackingSensor(){
+
+}
+
+/* 
+ * The distance sensor will track the distance of the moving target to the turret if it reaches the threshold the traffic LED will turn red 
+ */
+
+void turretWeapons(); {
 
 }
