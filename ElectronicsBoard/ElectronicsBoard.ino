@@ -142,4 +142,8 @@ void logEvent(String dataToLog) {
 void loop() {
   // put your main code here, to run repeatedly:
 
+ bluetoothConnectivity();
+ motorDC();
+ doorAlarm();
+
 }
