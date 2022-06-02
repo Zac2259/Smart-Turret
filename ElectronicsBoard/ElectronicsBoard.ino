@@ -142,8 +142,42 @@ void logEvent(String dataToLog) {
 void loop() {
   // put your main code here, to run repeatedly:
 
- bluetoothConnectivity();
- motorDC();
- doorAlarm();
+ turretButtton(); // Button Sensor and Potienometer
+ trackingSensor(); // Line Sensor and PIR
+ turretWeapoins(); // Distance Sensor and Traffic LED
 
+}
+
+/* 
+ *  Will activate and deactivate the turret and the line sensor
+ *  @param Has the button be pressed if yes: activate turret and line sensor.
+ *  else remain off. 
+ *  @return void
+ */
+
+void turretButton(){
+
+}
+/* 
+ *  When line sensor is triggered the turret will begin to physiclly follow any moving targets
+ *  as well as activate the distance sensor 
+ *  @parm has line sensor been triggered yes: activate PIR and distance sensor
+ *  if else: remain off
+ *  @return boolean
+ */
+boolean trackingSensor(){
+
+}
+
+/* 
+ *  When the moving target reaches the distance threshold the traffic LED shall turn red
+ *  indicating that the turret is firing upon the target
+ *  @parm has target reached distance threshold yes: Activate red LED
+ *  if else: Keep tracking target
+ *  @return void
+ */
+
+void turretWeapons(){ 
+
+}
 }
