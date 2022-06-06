@@ -34,8 +34,8 @@ Servo myservo;
 #define piezoPin 8
 
 // Sonar - HC-SR04
-#define echoPin 2 // attach pin D2 Arduino to pin Echo of HC-SR04
-#define trigPin A4 //attach pin D3 Arduino to pin Trig of HC-SR04
+#define echoPin A4 // attach pin D2 Arduino to pin Echo of HC-SR04
+#define trigPin 2 //attach pin D3 Arduino to pin Trig of HC-SR04
 
 // Line Sensor
 #define lineSensorPin 3
@@ -51,50 +51,50 @@ void setup() {
   Serial.begin(9600);           // Open serial communications and wait for port to open:
   while (!Serial) {
     delay(1);                   // wait for serial port to connect. Needed for native USB port only
-
-    // Traffic Lights - LED Outputs
-    pinMode(ledRed, OUTPUT);
-    pinMode(ledYellow, OUTPUT);
-    pinMode(ledGreen, OUTPUT);
-
-    // DC Motor & Motor Module - L298N
-    motor.setSpeed(70);
-
-    // Servo
-    myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-
-    //Potentiometer
-    pinMode(pot, INPUT);
-
-    // Piezo Buzzer
-    pinMode(piezoPin, OUTPUT);
-
-    // Sonar - HC-SR04
-    pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
-    pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
-
-    // Line Sensor
-    pinMode(lineSensorPin, OUTPUT);
-
-    // Crash Sensor / Button
-    pinMode(crashSensor, INPUT);
-   
-    // PIR Sensor
-    pinMode(pinPIR, INPUT);
-
   }
+  // Traffic Lights - LED Outputs
+  pinMode(ledRed, OUTPUT);
+  pinMode(ledYellow, OUTPUT);
+  pinMode(ledGreen, OUTPUT);
 
+  // DC Motor & Motor Module - L298N
+  motor.setSpeed(70);
+
+  // Servo
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+
+  //Potentiometer
+  pinMode(pot, INPUT);
+
+  // Piezo Buzzer
+  pinMode(piezoPin, OUTPUT);
+
+  // Sonar - HC-SR04
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
+  pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
+
+  // Line Sensor
+  pinMode(lineSensorPin, OUTPUT);
+
+  // Crash Sensor / Button
+  pinMode(crashSensor, INPUT);
+
+  // PIR Sensor
+  pinMode(pinPIR, INPUT);
   // SD Card initialisation
-  Serial.print("Initializing SD card...");
-  if (!SD.begin(10)) {
-    Serial.println("initialization failed!");
-    while (1);
-  }
+//  Serial.print("Initializing SD card...");
+//  if (!SD.begin(10)) {
+//    Serial.println("initialization failed!");
+//    while (1);
+//  }
   // Real Time Clock (RTC)
   rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
   Serial.println("initialization done.");
-  logEvent("System Initialisation...");
+  // logEvent("System Initialisation...");
+
 }
+
+
 void logEvent(String dataToLog) {
   /*
      Log entries to a file on an SD card.
@@ -147,7 +147,7 @@ void logEvent(String dataToLog) {
 
 void loop() {
 
-  turretButtton(); // Button Sensor and Potienometer
+  turretButton(); // Button Sensor and Potienometer
   trackingSensor(); // Line Sensor and PIR
   turretWeapons(); // Distance Sensor and Traffic LED
 
@@ -158,14 +158,7 @@ void loop() {
     else remain off.
     @return void
 */
-void turretButton(){
-
-if (crashSensor =1){
-  digitalWrite(lineSensorPin, HIGH); 
-}else{ 
-digitalWrite(lineSensorPin, LOW); 
-
-
+void turretButton() {
 
 }
 /*
@@ -175,7 +168,7 @@ digitalWrite(lineSensorPin, LOW);
     if else: remain off
     @return void
 */
-void trackingSensor(){
+void trackingSensor() {
 
 }
 /*
@@ -185,6 +178,6 @@ void trackingSensor(){
     if else: Keep tracking target
     @return void
 */
-void turretWeapons(){
+void turretWeapons() {
 
 }
