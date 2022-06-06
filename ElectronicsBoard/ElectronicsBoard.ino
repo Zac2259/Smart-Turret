@@ -9,7 +9,7 @@ DateTime rightNow;  // used to store the current time.
 
 // Traffic Lights - LED Outputs
 #define ledRed A0
-#define ledYellow A1 
+#define ledYellow A1
 #define ledGreen A2
 
 // DC Motor & Motor Module - L298N
@@ -43,39 +43,45 @@ Servo myservo;
 // Crash Sensor / Button
 #define crashSensor 4
 
+// PIR Sensor
+#define pinPIR 7
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);           // Open serial communications and wait for port to open:
   while (!Serial) {
     delay(1);                   // wait for serial port to connect. Needed for native USB port only
 
-  // Traffic Lights - LED Outputs
-pinMode(ledRed, OUTPUT);
-pinMode(ledYellow, OUTPUT);
-pinMode(ledGreen, OUTPUT);
+    // Traffic Lights - LED Outputs
+    pinMode(ledRed, OUTPUT);
+    pinMode(ledYellow, OUTPUT);
+    pinMode(ledGreen, OUTPUT);
 
-// DC Motor & Motor Module - L298N
-motor.setSpeed(70);
+    // DC Motor & Motor Module - L298N
+    motor.setSpeed(70);
 
-// Servo
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+    // Servo
+    myservo.attach(9);  // attaches the servo on pin 9 to the servo object
 
-//Potentiometer
-pinMode(pot, INPUT);
+    //Potentiometer
+    pinMode(pot, INPUT);
 
-// Piezo Buzzer
-pinMode(piezoPin,OUTPUT);
+    // Piezo Buzzer
+    pinMode(piezoPin, OUTPUT);
 
-// Sonar - HC-SR04
-pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
-pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
+    // Sonar - HC-SR04
+    pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
+    pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
 
-// Line Sensor
-pinMode(lineSensorPin, OUTPUT);
+    // Line Sensor
+    pinMode(lineSensorPin, OUTPUT);
 
-// Crash Sensor / Button
-pinMode(crashSensor, INPUT);
-  
+    // Crash Sensor / Button
+    pinMode(crashSensor, INPUT);
+   
+    // PIR Sensor
+    pinMode(pinPIR, INPUT);
+
   }
 
   // SD Card initialisation
@@ -140,44 +146,45 @@ void logEvent(String dataToLog) {
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
- turretButtton(); // Button Sensor and Potienometer
- trackingSensor(); // Line Sensor and PIR
- turretWeapoins(); // Distance Sensor and Traffic LED
+  turretButtton(); // Button Sensor and Potienometer
+  trackingSensor(); // Line Sensor and PIR
+  turretWeapons(); // Distance Sensor and Traffic LED
 
 }
-
-/* 
- *  Will activate and deactivate the turret and the line sensor
- *  @param Has the button be pressed if yes: activate turret and line sensor.
- *  else remain off. 
- *  @return void
- */
-
+/*
+    Will activate and deactivate the turret and the line sensor
+    @param Has the button be pressed if yes: activate turret and line sensor.
+    else remain off.
+    @return void
+*/
 void turretButton(){
 
-}
-/* 
- *  When line sensor is triggered the turret will begin to physiclly follow any moving targets
- *  as well as activate the distance sensor 
- *  @parm has line sensor been triggered yes: activate PIR and distance sensor
- *  if else: remain off
- *  @return boolean
- */
-boolean trackingSensor(){
+if (crashSensor =1){
+  digitalWrite(lineSensorPin, HIGH); 
+}else{ 
+digitalWrite(lineSensorPin, LOW); 
+
+
 
 }
-
-/* 
- *  When the moving target reaches the distance threshold the traffic LED shall turn red
- *  indicating that the turret is firing upon the target
- *  @parm has target reached distance threshold yes: Activate red LED
- *  if else: Keep tracking target
- *  @return void
- */
-
-void turretWeapons(){ 
+/*
+    When line sensor is triggered the turret will begin to physiclly follow any moving targets
+    as well as activate the distance sensor
+    @parm has line sensor been triggered yes: activate PIR and distance sensor
+    if else: remain off
+    @return void
+*/
+void trackingSensor(){
 
 }
+/*
+    When the moving target reaches the distance threshold the traffic LED shall turn red
+    indicating that the turret is firing upon the target
+    @parm has target reached distance threshold yes: Activate red LED
+    if else: Keep tracking target
+    @return void
+*/
+void turretWeapons(){
+
 }
