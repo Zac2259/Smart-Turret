@@ -82,11 +82,11 @@ void setup() {
   // PIR Sensor
   pinMode(pinPIR, INPUT);
   // SD Card initialisation
-//  Serial.print("Initializing SD card...");
-//  if (!SD.begin(10)) {
-//    Serial.println("initialization failed!");
-//    while (1);
-//  }
+  Serial.print("Initializing SD card...");
+  if (!SD.begin(10)) {
+    Serial.println("initialization failed!");
+    while (1);
+  }
   // Real Time Clock (RTC)
   rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
   Serial.println("initialization done.");
