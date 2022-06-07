@@ -80,16 +80,16 @@ void setup() {
   pinMode(crashSensor, INPUT);
 
   // PIR Sensor
-  pinMode(pinPIR, INPUT);
-  // SD Card initialisation
-  Serial.print("Initializing SD card...");
-  if (!SD.begin(10)) {
-    Serial.println("initialization failed!");
-    while (1);
-  }
-  // Real Time Clock (RTC)
-  rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
-  Serial.println("initialization done.");
+//  pinMode(pinPIR, INPUT);
+//  // SD Card initialisation
+//  Serial.print("Initializing SD card...");
+//  if (!SD.begin(10)) {
+//    Serial.println("initialization failed!");
+//    while (1);
+//  }
+//  // Real Time Clock (RTC)
+//  rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
+//  Serial.println("initialization done.");
   // logEvent("System Initialisation...");
 
 }
@@ -160,7 +160,20 @@ void loop() {
 */
 void turretButton() {
 
+  int buttonTrigger = 1;
+  if (buttonTrigger = 1) {
+    digitalWrite(lineSensorPin, HIGH);
+  } else {
+    digitalWrite(lineSensorPin, LOW);
+  }
+
 }
+
+boolean readButton() {
+  int buttonTrigger = digitalRead(crashSensor);
+  return buttonTrigger;
+}
+
 /*
     When line sensor is triggered the turret will begin to physiclly follow any moving targets
     as well as activate the distance sensor
