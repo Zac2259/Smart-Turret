@@ -45,7 +45,7 @@ Servo myservo;
 
 void setup() {
   // put your setup code here, to run once:
-
+Serial.begin(9600);
   // SD Card initialisation
   Serial.print("Initializing SD card...");
   if (!SD.begin(10)) {
@@ -79,7 +79,7 @@ void setup() {
   pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
 
   // Line Sensor
-  pinMode(lineSensorPin, OUTPUT);
+  pinMode(lineSensorPin, INPUT);
 
   // Crash Sensor / Button
   pinMode(crashSensor, INPUT);
@@ -142,15 +142,16 @@ void loop() {
   turretRemote(); // Button and potiometer
   trackingSensor(); // Line Sensor and PIR
   turretWeapons(); // Distance Sensor and Traffic LED
-  delay(100);
 }
-
 /*
    button activates turret and line sensor the potienometer adjusts the vertical angle of the turret
 */
 
 void turretRemote() {
-
+  int val = analogRead(pot);            // reads the value of the potentiometer (value between 0 and 1023)
+  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
+  myservo.write(val);
+  Serial.println(val);
 }
 
 /*
@@ -165,6 +166,6 @@ void trackingSensor() {
    The distance sensor will track the distance of the moving target to the turret if it reaches the threshold the traffic LED will turn red
 */
 
-void turretWeapons(); {
+void turretWeapons() {
 
 }
