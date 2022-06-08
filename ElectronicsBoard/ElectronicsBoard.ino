@@ -9,7 +9,7 @@ DateTime rightNow;  // used to store the current time.
 
 // Traffic Lights - LED Outputs
 #define ledRed A0
-#define ledYellow A1 
+#define ledYellow A1
 #define ledGreen A2
 
 // DC Motor & Motor Module - L298N
@@ -46,37 +46,6 @@ Servo myservo;
 void setup() {
   // put your setup code here, to run once:
 
-
-
-  // Traffic Lights - LED Outputs
-pinMode(ledRed, OUTPUT);
-pinMode(ledYellow, OUTPUT);
-pinMode(ledGreen, OUTPUT);
-
-// DC Motor & Motor Module - L298N
-motor.setSpeed(70);
-
-// Servo
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-
-//Potentiometer
-pinMode(pot, INPUT);
-
-// Piezo Buzzer
-pinMode(piezoPin,OUTPUT);
-
-// Sonar - HC-SR04
-pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
-pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
-
-// Line Sensor
-pinMode(lineSensorPin, OUTPUT);
-
-// Crash Sensor / Button
-pinMode(crashSensor, INPUT);
-  
-  }
-
   // SD Card initialisation
   Serial.print("Initializing SD card...");
   if (!SD.begin(10)) {
@@ -87,7 +56,37 @@ pinMode(crashSensor, INPUT);
   rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
   Serial.println("initialization done.");
   logEvent("System Initialisation...");
+
+  // Traffic Lights - LED Outputs
+  pinMode(ledRed, OUTPUT);
+  pinMode(ledYellow, OUTPUT);
+  pinMode(ledGreen, OUTPUT);
+
+  // DC Motor & Motor Module - L298N
+  motor.setSpeed(70);
+
+  // Servo
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+
+  //Potentiometer
+  pinMode(pot, INPUT);
+
+  // Piezo Buzzer
+  pinMode(piezoPin, OUTPUT);
+
+  // Sonar - HC-SR04
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
+  pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
+
+  // Line Sensor
+  pinMode(lineSensorPin, OUTPUT);
+
+  // Crash Sensor / Button
+  pinMode(crashSensor, INPUT);
+
 }
+
+
 void logEvent(String dataToLog) {
   /*
      Log entries to a file on an SD card.
@@ -140,30 +139,31 @@ void logEvent(String dataToLog) {
 
 void loop() {
   // put your main code here, to run repeatedly:
-turretRemote(); // Button and potiometer
-trackingSensor(); // Line Sensor and PIR
-turretWeapons(): // Distance Sensor and Traffic LED
+  turretRemote(); // Button and potiometer
+  trackingSensor(); // Line Sensor and PIR
+  turretWeapons(); // Distance Sensor and Traffic LED
+  delay(100);
 }
 
 /*
- * button activates turret and line sensor the potienometer adjusts the vertical angle of the turret
- */
+   button activates turret and line sensor the potienometer adjusts the vertical angle of the turret
+*/
 
-void turretRemote(){
+void turretRemote() {
 
 }
 
 /*
- * when the line sensor is triggered it will activate the PIR which will track any moving targets the turret will then phsyiclly move to track said target vai the DC Motor
- */
+   when the line sensor is triggered it will activate the PIR which will track any moving targets the turret will then phsyiclly move to track said target vai the DC Motor
+*/
 
-void trackingSensor(){
+void trackingSensor() {
 
 }
 
-/* 
- * The distance sensor will track the distance of the moving target to the turret if it reaches the threshold the traffic LED will turn red 
- */
+/*
+   The distance sensor will track the distance of the moving target to the turret if it reaches the threshold the traffic LED will turn red
+*/
 
 void turretWeapons(); {
 
