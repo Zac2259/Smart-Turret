@@ -1,3 +1,7 @@
+byte lastButtonState;
+byte ledState = LOW;
+unsigned long lastTimeButtonStateChanged = millis();
+unsigned long debounceDuration = 100;
 // SD Card Module
 #include <SPI.h>
 #include <SD.h>
@@ -45,7 +49,7 @@ Servo myservo;
 
 void setup() {
   // put your setup code here, to run once:
-Serial.begin(9600);
+  Serial.begin(9600);
   // SD Card initialisation
   Serial.print("Initializing SD card...");
   if (!SD.begin(10)) {
@@ -148,10 +152,27 @@ void loop() {
 */
 
 void turretRemote() {
-  int val = analogRead(pot);            // reads the value of the potentiometer (value between 0 and 1023)
-  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
-  myservo.write(val);
-  Serial.println(val);
+  if (millis() - lastTimeButtonStateChanged >= debounceDuration) {
+    byte buttonState = digitalRead(crashSensor);
+    if (buttonState != last ButtonState) {
+      lastTimeButtonStateChanged = millis();
+      lastButtonState = buttomState;
+      if (buttonState == LOW) {
+        if (ledState = HIGH) {
+          ledState = LOW;
+        }
+        else {
+          ledState = HIGH
+        }
+        digitalWrite(ledYellow, ledState);
+      }
+    }
+  }
+}
+int val = analogRead(pot);            // reads the value of the potentiometer (value between 0 and 1023)
+val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
+myservo.write(val);
+Serial.println(val);
 }
 
 /*
