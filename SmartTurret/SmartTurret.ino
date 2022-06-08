@@ -48,6 +48,7 @@ Servo myservo;
 #define crashSensor 4
 
 void setup() {
+  lastButtonState = digitalRead(crashSensor);
   // put your setup code here, to run once:
   Serial.begin(9600);
   // SD Card initialisation
@@ -146,6 +147,7 @@ void loop() {
   turretRemote(); // Button and potiometer
   trackingSensor(); // Line Sensor and PIR
   turretWeapons(); // Distance Sensor and Traffic LED
+  turretAdjustment();
 }
 /*
    button activates turret and line sensor the potienometer adjusts the vertical angle of the turret
@@ -154,25 +156,27 @@ void loop() {
 void turretRemote() {
   if (millis() - lastTimeButtonStateChanged >= debounceDuration) {
     byte buttonState = digitalRead(crashSensor);
-    if (buttonState != last ButtonState) {
+    if (buttonState != lastButtonState) {
       lastTimeButtonStateChanged = millis();
-      lastButtonState = buttomState;
+      lastButtonState = buttonState;
       if (buttonState == LOW) {
-        if (ledState = HIGH) {
+        if (ledState == HIGH) {
           ledState = LOW;
         }
         else {
-          ledState = HIGH
+          ledState = HIGH;
         }
-        digitalWrite(ledYellow, ledState);
+        digitalWrite(ledGreen, ledState);
       }
     }
   }
 }
-int val = analogRead(pot);            // reads the value of the potentiometer (value between 0 and 1023)
-val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
-myservo.write(val);
-Serial.println(val);
+
+void turretAdjustment() {
+//  int val = analogRead(pot);            // reads the value of the potentiometer (value between 0 and 1023)
+//  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
+//  myservo.write(val);                  // sets the servo position according to the scaled value
+
 }
 
 /*
