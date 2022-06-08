@@ -34,8 +34,13 @@ Servo myservo;
 #define piezoPin 8
 
 // Sonar - HC-SR04
+<<<<<<< HEAD
 #define echoPin 2 // attach pin D2 Arduino to pin Echo of HC-SR04
 #define trigPin A4 //attach pin D3 Arduino to pin Trig of HC-SR04
+=======
+#define echoPin A4 // attach pin D2 Arduino to pin Echo of HC-SR04
+#define trigPin 2 //attach pin D3 Arduino to pin Trig of HC-SR04
+>>>>>>> cde8c5fd3d400500dead4f79f5425f1913780267
 
 // Line Sensor
 #define lineSensorPin 3
@@ -43,8 +48,57 @@ Servo myservo;
 // Crash Sensor / Button
 #define crashSensor 4
 
+<<<<<<< HEAD
+=======
+// PIR Sensor
+#define pinPIR 7
+
+>>>>>>> cde8c5fd3d400500dead4f79f5425f1913780267
 void setup() {
   // put your setup code here, to run once:
+  Serial.begin(9600);           // Open serial communications and wait for port to open:
+  while (!Serial) {
+    delay(1);                   // wait for serial port to connect. Needed for native USB port only
+  }
+  // Traffic Lights - LED Outputs
+  pinMode(ledRed, OUTPUT);
+  pinMode(ledYellow, OUTPUT);
+  pinMode(ledGreen, OUTPUT);
+
+  // DC Motor & Motor Module - L298N
+  motor.setSpeed(70);
+
+  // Servo
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+
+  //Potentiometer
+  pinMode(pot, INPUT);
+
+  // Piezo Buzzer
+  pinMode(piezoPin, OUTPUT);
+
+  // Sonar - HC-SR04
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
+  pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
+
+  // Line Sensor
+  pinMode(lineSensorPin, OUTPUT);
+
+  // Crash Sensor / Button
+  pinMode(crashSensor, INPUT);
+
+  // PIR Sensor
+//  pinMode(pinPIR, INPUT);
+//  // SD Card initialisation
+//  Serial.print("Initializing SD card...");
+//  if (!SD.begin(10)) {
+//    Serial.println("initialization failed!");
+//    while (1);
+//  }
+//  // Real Time Clock (RTC)
+//  rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
+//  Serial.println("initialization done.");
+  // logEvent("System Initialisation...");
 
   // SD Card initialisation
   Serial.print("Initializing SD card...");
@@ -138,6 +192,7 @@ void logEvent(String dataToLog) {
 
 
 void loop() {
+<<<<<<< HEAD
   // put your main code here, to run repeatedly:
   turretRemote(); // Button and potiometer
   trackingSensor(); // Line Sensor and PIR
@@ -166,5 +221,53 @@ void trackingSensor() {
 */
 
 void turretWeapons(); {
+=======
+
+  turretButton(); // Button Sensor and Potienometer
+  trackingSensor(); // Line Sensor and PIR
+  turretWeapons(); // Distance Sensor and Traffic LED
+
+}
+/*
+    Will activate and deactivate the turret and the line sensor
+    @param Has the button be pressed if yes: activate turret and line sensor.
+    else remain off.
+    @return void
+*/
+void turretButton() {
+
+  int buttonTrigger = 1;
+  if (buttonTrigger = 1) {
+    digitalWrite(lineSensorPin, HIGH);
+  } else {
+    digitalWrite(lineSensorPin, LOW);
+  }
+
+}
+
+boolean readButton() {
+  int buttonTrigger = digitalRead(crashSensor);
+  return buttonTrigger;
+}
+
+/*
+    When line sensor is triggered the turret will begin to physiclly follow any moving targets
+    as well as activate the distance sensor
+    @parm has line sensor been triggered yes: activate PIR and distance sensor
+    if else: remain off
+    @return void
+*/
+void trackingSensor() {
+
+}
+/*
+    When the moving target reaches the distance threshold the traffic LED shall turn red
+    indicating that the turret is firing upon the target
+    @parm has target reached distance threshold yes: Activate red LED
+    if else: Keep tracking target
+    @return void
+*/
+void turretWeapons() {
+>>>>>>> cde8c5fd3d400500dead4f79f5425f1913780267
 
 }
