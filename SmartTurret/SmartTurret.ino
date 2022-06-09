@@ -27,6 +27,8 @@ const unsigned int EN = 9;
 // Create one motor instance
 L298N motor(EN, IN1, IN2);
 
+#define PIR 1
+
 // Servo
 #include <Servo.h>
 Servo myservo;
@@ -144,14 +146,21 @@ void logEvent(String dataToLog) {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  turretAdjustment();
   turretRemote(); // Button and potiometer
   trackingSensor(); // Line Sensor and PIR
   turretWeapons(); // Distance Sensor and Traffic LED
-  turretAdjustment();
 }
 /*
    button activates turret and line sensor the potienometer adjusts the vertical angle of the turret
 */
+
+void turretAdjustment() {
+//  int val = analogRead(pot);            // reads the value of the potentiometer (value between 0 and 1023)
+//  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
+//  myservo.write(val);                  // sets the servo position according to the scaled value
+  // commented out to prevent servo from moving while programming
+}
 
 void turretRemote() {
   if (millis() - lastTimeButtonStateChanged >= debounceDuration) {
@@ -166,25 +175,20 @@ void turretRemote() {
         else {
           ledState = HIGH;
         }
-        digitalWrite(ledGreen, ledState);
+        digitalWrite(ledYellow, ledState);
       }
     }
   }
 }
 
-void turretAdjustment() {
-//  int val = analogRead(pot);            // reads the value of the potentiometer (value between 0 and 1023)
-//  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
-//  myservo.write(val);                  // sets the servo position according to the scaled value
 
-}
 
 /*
    when the line sensor is triggered it will activate the PIR which will track any moving targets the turret will then phsyiclly move to track said target vai the DC Motor
 */
 
 void trackingSensor() {
-
+digitalRead(PIR);
 }
 
 /*
