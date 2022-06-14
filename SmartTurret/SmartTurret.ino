@@ -1,3 +1,4 @@
+int val;    // variable to read the value from the analog pin
 byte lastButtonState;
 byte ledState = LOW;
 unsigned long lastTimeButtonStateChanged = millis();
@@ -146,17 +147,17 @@ void logEvent(String dataToLog) {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  turretAdjustment();
-  turretRemote(); // Button and potiometer
-  trackingSensor(); // Line Sensor and PIR
-  turretWeapons(); // Distance Sensor and Traffic LED
+  turretAdjustment(); // potiometer
+  turretRemote(); // Button  
+  readAlarm(); // Line Sensor and distance sensor
+  triggerAlarm(); // Traffic LED
 }
 /*
    button activates turret and line sensor the potienometer adjusts the vertical angle of the turret
 */
 
 void turretAdjustment() {
-  int val = analogRead(pot);            // reads the value of the potentiometer (value between 0 and 1023)
+                                       int val = analogRead(pot);            // reads the value of the potentiometer (value between 0 and 1023)
   val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
   myservo.write(val);                  // sets the servo position according to the scaled value
   // commented out to prevent servo from moving while programming
@@ -187,14 +188,20 @@ void turretRemote() {
    when the line sensor is triggered it will activate the PIR which will track any moving targets the turret will then phsyiclly move to track said target vai the DC Motor
 */
 
-void trackingSensor() {
-digitalRead(PIR);
+void triggerAlarm() {
+int minimumRequirementsForAlarm = alarmSensors[0] + alarmSensors[1];
+if (minimumRequirementsForAlarm == 2){ 
+  digitalWrite(ledRed, HIGH);
+}else{
+  digitalWrite(ledRed, LOW);
 }
+
 
 /*
    The distance sensor will track the distance of the moving target to the turret if it reaches the threshold the traffic LED will turn red
 */
 
-void turretWeapons() {
-
+void readAlarm() {
+alarmSensors[0] = readDistance(); 
+alarmSensors[1] = readLine(); 
 }
